@@ -80,32 +80,31 @@ DELETE /api/tasks/{id}
 
 ### Login Screen
 
-![Login Screen](images/login.png)
+![Login Screen](lib/images/Login.png)
 
 ### Register Screen
 
-![Register Screen](images/register.png)
+![Register Screen](lib/images/Register.png)
 
 ### Task List Screen
 
-![Task List](images/task.png)
+![Task List](lib/images/task.png)
 
 ### Home Screen
 
-![Home Screen](images/home.png)
+![Home Screen](lib/images/home.png)
 
 ### Add Task Screen
 
-![Add Task](images/addtask.png)
+![Add Task](lib/images/addtask.png)
 
 ### Edit Task Screen
 
-![Edit Task](images/edittask.png)
+![Edit Task](lib/images/Edittask.png)
 
 ### Delete Task
 
-![Delete Task](images/deletetask.png)
-
+![Delete Task](lib/images/deletetask.png)
 ---
 
 ## Security
