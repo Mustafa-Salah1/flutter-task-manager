@@ -12,6 +12,12 @@ A full-stack Task Manager application built with **Flutter** and **Spring Boot**
 * Create Tasks
 * Edit Tasks
 * Delete Tasks
+* Search Tasks
+* Statistics Dashboard
+* Dark / Light Theme
+* Theme Toggle
+* Empty State Screen
+* Loading Indicator
 * Persistent Login using SharedPreferences
 * MySQL Database Integration
 * REST API Integration
@@ -46,13 +52,25 @@ A full-stack Task Manager application built with **Flutter** and **Spring Boot**
 
 ```text
 lib/
-├── login_screen.dart
-├── register_screen.dart
-├── splash_screen.dart
-├── task_screen.dart
-├── add_task_screen.dart
-└── edit_task_screen.dart
+├── screens/
+│   ├── auth/
+│   │   ├── login_screen.dart
+│   │   └── register_screen.dart
+│   │
+│   ├── splash/
+│   │   └── splash_screen.dart
+│   │
+│   └── tasks/
+│       ├── task_screen.dart
+│       ├── add_task_screen.dart
+│       └── edit_task_screen.dart
+│
+├── theme/
+│   └── app_theme.dart
+│
+└── main.dart
 ```
+
 
 ---
 
@@ -124,6 +142,18 @@ DELETE /api/tasks/{id}
 * Search Tasks
 * Dark / Light Theme
 * Push Notifications
+* Google Play Store Release
+
+## Implemented Enhancements
+
+* Search tasks by title and description
+* Statistics Dashboard (Total, Completed, Pending Tasks)
+* Dark / Light Theme Support
+* Theme Toggle Button
+* Loading Indicator while fetching data
+* Empty State UI when no tasks exist
+
+
 
 ---
 

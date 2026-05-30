@@ -2,35 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class EditTaskScreen extends StatefulWidget {
-  final Map task;
+class AddTaskScreen extends StatefulWidget {
   final String token;
 
-  const EditTaskScreen({super.key, required this.task, required this.token});
+  const AddTaskScreen({super.key, required this.token});
 
   @override
-  State<EditTaskScreen> createState() => _EditTaskScreenState();
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
 
-class _EditTaskScreenState extends State<EditTaskScreen> {
-  late TextEditingController titleController;
-  late TextEditingController descriptionController;
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-
-    titleController = TextEditingController(text: widget.task['title']);
-
-    descriptionController = TextEditingController(
-      text: widget.task['description'],
-    );
-  }
-
-  Future<void> updateTask() async {
-    final response = await http.put(
+  Future<void> saveTask() async {
+    final response = await http.post(
       Uri.parse(
-        'https://task-manager-api-production-ff43.up.railway.app/api/tasks/${widget.task['id']}',
+        'https://task-manager-api-production-ff43.up.railway.app/api/tasks',
       ),
       headers: {
         'Authorization': 'Bearer ${widget.token}',
@@ -39,16 +27,16 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
       body: jsonEncode({
         'title': titleController.text,
         'description': descriptionController.text,
-        'completed': widget.task['completed'],
+        'completed': false,
       }),
     );
 
     if (response.statusCode == 200) {
-      print("Task Updated");
+      print("Task Created");
 
       Navigator.pop(context, true);
     } else {
-      print("Update Failed");
+      print("Failed");
       print(response.statusCode);
       print(response.body);
     }
@@ -57,11 +45,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff0B0B0F),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text("Edit Task"),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        title: const Text("Add Task"),
+        centerTitle: true,
       ),
 
       body: Padding(
@@ -70,7 +59,6 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
           children: [
             TextField(
               controller: titleController,
-              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(labelText: "Title"),
             ),
 
@@ -78,21 +66,20 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
 
             TextField(
               controller: descriptionController,
-              style: const TextStyle(color: Colors.white),
               maxLines: 3,
               decoration: const InputDecoration(labelText: "Description"),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
 
             SizedBox(
               width: double.infinity,
               height: 55,
               child: ElevatedButton(
                 onPressed: () async {
-                  await updateTask();
+                  await saveTask();
                 },
-                child: const Text("Update Task"),
+                child: const Text("Save Task"),
               ),
             ),
           ],
