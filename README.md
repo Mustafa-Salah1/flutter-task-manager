@@ -123,6 +123,14 @@ DELETE /api/tasks/{id}
 ### Delete Task
 
 ![Delete Task](lib/images/deletetask.png)
+
+### Dashboard
+
+![Dashboard](lib/images/dashboard.png)
+
+### Statistics Dashboard
+
+![Dashboard](lib/images/statistics.png)
 ---
 
 ## Security
